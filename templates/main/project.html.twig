@@ -1,0 +1,47 @@
+{# Таблицы "Категории" #}
+{% extends "index.html.twig" %}
+
+
+{% block content %}
+{% for data in sq_vid %}
+
+    {% if getProj is defined %}
+    <div class="col-md-4 br5"  style = "margin-bottom: 2rem; margin-left: 3rem; background-color: black; width: 35%; height: 370px;">
+        <div class="card mb-4 shadow-sm" style="width: 100%">
+            <img src= {{ data.cover }}  width="90%"  style = "margin-top: 2rem">
+            <div class="card-body">
+                <a href = "projects/{{ data.id}}"> <p class="card-text" style = "color: whitesmoke;">{{ data.title }}</p></a>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group" style = "margin-bottom: 5px; position: absolute; bottom: 0px;">
+                        <button type="button" class="btn btn-sm btn btn-default">Ａｄｄ</button>
+                        <button type="button" class="btn btn-sm  btn btn-default">Ｃｈｅｃｋ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% else %}
+            <div class="col-md-4 br5"  style = "margin-bottom: 2rem; margin-left: 3rem; background-color: black; width: 35%; height: 370px;">
+                <div class="card mb-4 shadow-sm" style="width: 100%">
+                    <img src= {{ data.cover }}  width="90%"  style = "margin-top: 2rem">
+                    <div class="card-body">
+                        <a href = "videos/{{ data.id}}"> <p class="card-text" style = "color: whitesmoke;">{{ data.title }}</p></a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group" style = "margin-bottom: 5px; position: absolute; bottom: 0px;">
+                                <button type="button" class="btn btn-sm btn btn-default">Ａｄｄ</button>
+                                <button type="button" class="btn btn-sm  btn btn-default">Ｃｈｅｃｋ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+{% endfor %}
+
+
+<div class="navigation">
+    {{ knp_pagination_render(sq_vid) }}
+</div>
+
+{% endblock %}

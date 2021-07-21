@@ -1,0 +1,29 @@
+{# Шаблон удаление данных #}
+{% if (is_granted("ROLE_USER")) and (is_granted("ROLE_ADMIN") == false) %}
+    <form action = "/delete/{{ data.id }}" id = "formadd">
+        <input value = "-" type="submit" class="btn btn-danger btnadd" onclick="formadd.action += encodeURIComponent ()" style="width:50px; border-radius: 50px;margin-left: 76%"></input>
+    </form>
+    <div class = "poster" style="padding-bottom: -100vh">
+        <button type="button" class="btn btn-info btninf" style = "border-radius: 50px; margin-left: 76%; width: 50px;">...</button>
+        <div class = "descr">
+            <h4>Название: {{ data.title }}</h4>
+            <hr>
+            <p>Описание: {{ data.description }}</p>
+            <hr>
+            <p>Создано: {{ data.created }}</p>
+            <hr>
+        </div>
+    </div>
+{% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
+    {#<div class = "poster" style="padding-bottom: -100vh">
+        <button type="button" class="btn btn-info btninf" style = "border-radius: 50px;">Подробнее</button>
+        <div class = "descr">
+            <h4>Название: {{ data.title }}</h4>
+            <hr>
+            <p>Описание: {{ data.description }}</p>
+            <hr>
+            <p>Создано: {{ data.created }}</p>
+            <hr>
+        </di#}v>
+    </div>
+{% endif %}

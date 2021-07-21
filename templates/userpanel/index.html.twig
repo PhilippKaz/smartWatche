@@ -1,0 +1,81 @@
+{# Шаблон панели пользователя #}
+<title>{% block title %}Панель пользователя{% endblock %}</title>
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('assets/css/demo.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('assets/css/ready.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+
+{% endblock %}
+
+        {% include 'main/navbar.html.twig' %}
+<a href = "/userPanel/exportfile" style="background-color: lightblue; width: 100px; color: black; margin-left: 50px; border-radius: 10px; margin-top: 5px; margin-bottom: 5px;">Экспорт данных</a>
+<body style="overflow-x: hidden">
+<input class="form-control" id="myInput" type="text" placeholder="Введите значение для поиска.." style=" margin-left: 5vh; width: 95%; border-color: green">
+    <table class=" " style = "margin-left: 5vh; width: 95%; " id = "myTable">
+        <thead>
+        <tr>
+            <th></th>
+            <th style="width: 50px;">Наименование</th>
+            <th>Описание</th>
+            <th>Создано</th>
+            <th>Картинка</th>
+            <th>Добавлено</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for videolist in videolists %}
+            <tr>
+                <td style="width: 50px;"></td>
+                <td>{{ videolist.title }}</td>
+                <td>{{ videolist.description }}</td>
+                <td>{{ videolist.created }}</td>
+                <td>{{ videolist.cover }}</td>
+                <td>{{ videolist.added }}</td>
+                <td>
+                    <a href = "userpanel/delete/{{ videolist.id }}"><button class="btn"><i class = "glyphicon glyphicon-trash"></i></button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Ничего не найдено</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+<div class="navigation" style = "width: 100%; margin-left: 45%">
+    {{ knp_pagination_render(sq_vid) }}
+</div>
+
+    {% block javascripts %}
+        <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/jquery.cookie.js') }}"></script>
+
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+    {% endblock %}
+    </body>
+
+<script src="{{ asset('js/script.js') }}"></script>

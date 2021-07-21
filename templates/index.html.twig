@@ -1,0 +1,55 @@
+{# Главный шаблон #}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{% block title %}Главная{% endblock %}</title>
+
+    {% block stylesheets %} {# Подключение стилей #}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+        <link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/demo.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/ready.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/datepicker3.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <!--Icons-->
+        <script src="js/lumino.glyphs.js"></script>
+
+
+    {% endblock %}
+
+    {% block navbar %} {# Подключение шапки сайта #}
+        {% include 'main/navbar.html.twig' %}
+    {% endblock %}
+
+    {% block sidebar %} {# Подключение боковой панели #}
+        {% include 'main/sidebar.html.twig' %}
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+</body>
+
+{% block javascripts %} {# Подключение js скриптов #}
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/jquery.cookie.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.spoiler-title').click(function(){
+                $(this).parent().children('.spoiler-body').slideToggle();
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+</html>

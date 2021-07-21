@@ -1,0 +1,20 @@
+{# Дополнительных данных #}
+{% if prj != null %}
+    <div class = "poster" style="padding-bottom: -100vh">
+        <button type="button" class="btn btn-info btninf" style = "border-radius: 50px; height: 20vh;  margin-top: -26vh; margin-left: 76%;  width: 50px;">...</button>
+        <div class = "descr">
+            <h4>Название: {{ data.title }}</h4>
+            <hr>
+        </div>
+    </div>
+{% else %}
+    <div class = "poster" style="padding-bottom: -100vh">
+        <button type="button" class="btn btn-info btninf" style = "border-radius: 50px; height: 20vh; margin-top: -26vh; margin-left: 76%; width: 50px;">...</button>
+        <div class = "descr">
+            <h4>Название: {{ data.title }}</h4>
+            <hr>
+            <h4>Описание: {{ data.description }}</h4>
+            <hr>s
+        </div>
+    </div>
+{% endif %}

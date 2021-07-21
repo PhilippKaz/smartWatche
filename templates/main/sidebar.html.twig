@@ -1,0 +1,96 @@
+{# Таблицы "Категории" #}
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content" style="overflow-x: hidden">
+            <div class="sidebar-brand">
+                <a href="#">pro sidebar</a>
+                <div id="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right ">
+                {% if user != null %}
+                    {% if is_granted("ROLE_USER") and is_granted("ROLE_ADMIN")==FALSE  %}
+                        <div class="sidebar-header ofx">
+                            <div class="user-pic">
+                                 <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                alt="User picture">
+                            </div>
+                        <div class="user-info">
+                            <span class="user-name">
+                                <strong>{{ user }}</strong>
+                            </span>
+                        <span class="user-role">Пользователь</span>
+                        <span class="user-status">
+                                    <i class="fa fa-circle"></i>
+                                    <span>Online</span>
+                                </span>
+                        </div>
+
+                            <div class="sidebar-search">
+
+                                <div>
+                                    <div class="input-group" style="margin-top: 60px;width: 100%">
+                                        {% include 'search/index.html.twig' %}
+                                    </div>
+                                </div>
+                        <!-- sidebar-search  -->
+                        {% include 'main/sidebarcontent.html.twig' %}
+                        {% elseif is_granted("ROLE_USER") and is_granted("ROLE_ADMIN")==TRUE %}
+                            <div class="sidebar-header ofx">
+                                <div class="user-pic">
+                                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                         alt="User picture">
+                                </div>
+                                <div class="user-info">
+                                <span class="user-name">
+                                 <strong>{{ user }}</strong>
+                                </span>
+                                    <span class="user-role">Администратор</span>
+                                    <span class="user-status">
+                                    <i class="fa fa-circle"></i>
+                                    <span>Online</span>
+                                </span>
+                                </div>
+                                <div class="sidebar-search">
+                                    <div>
+                                        <div class="input-group" style="margin-top: 60px; width: 100%">
+                                           {% include 'search/index.html.twig' %}
+                                    </div>
+                                </div>
+                                <!-- sidebar-search  -->
+                                {% include 'main/sidebarcontent.html.twig' %}
+                                </div>
+                            </div></div>
+                            </div>
+                     {% endif %}
+                {% else %}
+                    <div class="sidebar-header">
+                               <div class="sidebar-search">
+                                    <div>
+                                        <div class="input-group">
+                                           {% include 'search/index.html.twig' %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- sidebar-search  -->
+                                {% include 'main/sidebarcontent.html.twig' %}
+                                </div>
+                            </div></div>
+                            </div>
+                {% endif %}
+            </ul>
+            </div>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <div class="container-fluid">
+        </div>
+
+    </main>
+    <!-- page-content" -->
+</div>
+<!-- page-wrapper -->

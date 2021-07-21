@@ -1,0 +1,23 @@
+{# Контент боковой панели #}
+<div class="sidebar-menu" style="margin-left: 3vh">
+        <ul >
+            <li class="header-menu">
+                <span>Категории</span>
+            </li>
+            {% if sq_data is defined  %}
+                <ul>
+                    {% for data in sq_data  %}
+                        <li>
+                            {% if getCat is defined  %}
+                            <a href="/category/{{ data.id}}" class="ah" >
+                                {%  else  %}
+                                <a href="/genre/{{ data.id}}">
+                                    {% endif %}
+                                    <p>{{ data.title|capitalize}}</p>
+                                </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </ul>
+</div>

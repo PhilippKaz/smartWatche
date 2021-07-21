@@ -1,0 +1,23 @@
+{#{% if sq_data is defined  %}#}
+    {#{% for data in sq_data  %}#}
+        {#<li class = "jumbotron"  style = "list-style-type:none;; background-color: black;">#}
+            {#{% if getCat is defined  %}#}
+                    {#<a style = "color:whitesmoke;" href = "/category/{{ data.id}} ">{{ data.title|capitalize}}</a>#}
+                {#{%  else  %}#}
+                    {#<a style = "color:whitesmoke;" href = "/genre/{{ data.id}}">{{ data.title|capitalize}}</a>#}
+                {#{% endif %}#}
+
+    {#{% endfor %}#}
+{#{% endif %}#}
+
+ {% for data in sq_data  %}
+     <li>
+         {% if getCat is defined  %}
+         <a href="/category/{{ data.id}}">
+             {%  else  %}
+             <a href="/genre/{{ data.id}}">
+                 {% endif %}
+                 <p>{{ data.title|capitalize}}</p>
+             </a>
+     </li>
+ {% endfor %}

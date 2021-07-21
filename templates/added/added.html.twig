@@ -1,0 +1,42 @@
+{#Шаблон добавление данных#}
+{% if prj == null %}
+    {% if (is_granted("ROLE_USER")) and (is_granted("ROLE_ADMIN") == false) %}
+        <form action = "/added/{{ data.id }}" id = "formadd">
+            <button  class="btn btn-success btnadd" onclick="formadd.action += encodeURIComponent ()" style="border-radius: 50px; margin-left: 76%;width:50px;">+</button>
+        </form>
+        <div class = "poster" style="padding-bottom: -100vh; ">
+            <button type="button" class="btn btn-info btninf" style = "border-radius: 50px; width: 50px; margin-left: 76%;">...</button>
+            <div class = "descr">
+
+            </div>
+        </div>
+    {% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
+        <div class = "poster" style="padding-bottom: -100vh">
+            <button type="button" class="btn btn-info btninf" style = "border-radius: 50px; width: 50px; height: 20vh;  margin-top: -26vh;  margin-left: 76%; width:50px;">...</button>
+            <div class = "descr">
+                <h4>Название: {{ data.title }}</h4>
+                <hr>
+            </div>
+        </div>
+    {% endif %}
+{% elseif prj == 1 %}
+    {% if (is_granted("ROLE_USER")) and (is_granted("ROLE_ADMIN") == false) %}
+        <form action = "/added/{{ data.id }}" id = "formadd">
+            <input value = "+" type="submit" class="btn btn-success btnadd" onclick="formadd.action += encodeURIComponent ()" style="border-radius: 50px;  margin-left: 77%;"></input>
+        </form>
+        <div class = "poster" style="padding-bottom: -100vh">
+            <button type="button" class="btn btn-info btninf" style = "border-radius: 50px;  margin-left: 77%;">Подробнее</button>
+            <div class = "descr">
+            </div>
+        </div>
+    {% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY") %}
+        <div class = "poster" style="padding-bottom: -100vh">
+            <button type="button" class="btn btn-info btninf" style = "border-radius: 50px; height: 20vh;  margin-top: -26vh;  margin-left: 77%;">Подробнее</button>
+            <div class = "descr">
+                <h4>Название: {{ data.title }}</h4>
+                <hr>
+            </div>
+        </div>
+    {% endif %}
+
+{% endif %}

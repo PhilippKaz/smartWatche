@@ -1,0 +1,11 @@
+{% if sq_data is defined  %}
+    {% for data in sq_data  %}
+        <li class = "jumbotron"  style = "list-style-type:none; height: 5vh; background-color: black; height: 1vh;">
+        {% if getGen is defined  %}
+            <a style = "color:whitesmoke;" href = "/category/{{ data.id}} " class="getCategory">{{ data.title|capitalize}}</a>
+        {%  else  %}
+            <a style = "color:whitesmoke;" href = "/genre/{{ data.id}}" class="getCategory">{{ data.title|capitalize}}</a>
+        {% endif %}
+
+    {% endfor %}
+{% endif %}

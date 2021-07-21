@@ -1,0 +1,100 @@
+{# Шаблон контента #}
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    {% if prj == null %}
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ofx" style="margin-top: -80px;">
+    {% else %}
+            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main ofx" style="margin-top: -120px;">
+    {% endif %}
+            <div class="row">
+                <div class="col-lg-12" style=" width: 100%">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-8 br5" style="">
+                                <ul class="nav">
+                                        {% if prj == null  %}
+                                            {% if user != null %}
+                                                {% for data in sq_vid  %}
+                                                    <li class="nav-item" style = "width: 200%; margin-left: -3vh;">
+                                                        <a href = "http://out.pladform.ru/player?pl=1&videoid={{ data.idd }}" style=" width: 76%">
+                                                            <div class="row">
+                                                                <div class="col-sm-6" style="margin-left: -9vh; width: 95vh;">
+                                                                    <img class = "vidcov" src= "{{ data.cover }}" >
+                                                                </div>
+                                                                <div class="col-sm-2"  style = " margin-left: 2vh; margin-top: 25px;">
+                                                                    <br><h3 class = "size" >Видео: {{ data.title }}</h3></br>
+                                                                    <br><h4 class = "size">Создано:  {{ data.created }}</h4></br>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        {% if viid == null %}
+                                                            {% include 'added/added.html.twig' %}
+                                                        {% else %}
+                                                            {% for vid in viid %}
+                                                                {% if data.title == vid.title %}
+                                                                    {% include 'delete/delete.html.twig' %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            {% for nonvid in nonviid %}
+                                                                {% if data.title == nonvid.title %}
+                                                                    {% include 'added/added.html.twig' %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            {% else %}
+                                                {% for data in sq_vid  %}
+                                                    <li class="nav-item" style = "width: 200%; margin-left: -3vh;">
+                                                        <a href = "http://out.pladform.ru/player?pl=1&videoid={{ data.idd }}" style=" width: 76%">
+                                                            <div class="row">
+                                                                <div class="col-sm-6" style="margin-left: -9vh; width: 95vh;">
+                                                                    <img class = "vidcov" src= "{{ data.cover }}" >
+                                                                </div>
+                                                                <div class="col-sm-2"  style = " margin-left: 2vh; margin-top: 25px;">
+                                                                    <br><h3 class = "size" >Видео: {{ data.title }}</h3></br>
+                                                                    <br><h4 class = "size">Создано:  {{ data.created }}</h4></br>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    {% include 'dop/dop.html.twig' %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% else %}
+                                            {% for data in sq_vid  %}
+                                                <li class="nav-item" style = "width: 200%; margin-left: -3vh;">
+                                                    <a href = "projects/{{ data.id }}" style=" width: 76%">
+                                                        <div class="row" >
+                                                            <div class="col-sm-6" style="margin-left: -9vh; width: 95vh;">
+                                                                <img class = "vidcov" src= "{{ data.cover }}" >
+                                                            </div>
+                                                            <div class="col-sm-2"  style = " margin-left: -40vh; margin-top: 25px; " >
+                                                                <nobr><h3 class = "">Проект: {{ data.title }}</h3></nobr>
+                                                                <nobr><h4 class = "">Создано: {{ data.updated_at }}</h4></nobr>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    {% include 'dop/dop.html.twig' %}
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="navigation" style = "width: 100%; margin-left: 36%">
+                            {{ knp_pagination_render(sq_vid) }}
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.row-->
+        </div>
+
+        <script src="{{ asset('js/script.js') }}"></script>
+
+{% endblock %}
+
+
+
+

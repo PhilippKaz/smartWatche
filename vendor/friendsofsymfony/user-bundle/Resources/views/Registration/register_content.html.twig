@@ -1,0 +1,86 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
+{% if error %}
+    <div style = "background-color: orange;">Ошибка регистрации. Попробуйте использовать другое имя пользователя и другую электронную почту</div>
+{% endif %}
+
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" name="fos_user_registration_form" method="post" action="/register/" class="fos_user_registration_register">
+					<span class="login100-form-title p-b-26" style="padding-bottom: 30px;">
+						Регистрация
+					</span>
+                <div>
+                    {#{% for error in errors %}#}
+                        {#<li>{%  error %}</li>#}
+                    {#{% endfor %}#}
+                    <div id="fos_user_registration_form">
+                        <div class = "wrap-input100 validate-input" data-validate = " is: a@b.c">
+                            <label for = "fos_user_registration_form_email" class = "required" />
+                            <input type="email" id="fos_user_registration_form_email" class = "input100" name="fos_user_registration_form[email]" required="required" />
+                            <span for="fos_user_registration_form_email" type="text" for="username" class="required focus-input100" data-placeholder="Введите Вашу электронную почту"></span>
+                        </div>
+
+                        <div class = "wrap-input100">
+                            <input class="input100" type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]" required="required" maxlength="180" pattern=".{2,}" />
+                            <span for="fos_user_registration_form_username" type="text" for="username" class="required focus-input100" data-placeholder="Введите имя пользователя"></span>
+                        </div>
+
+                        <div class="wrap-input100">
+                            <input class="input100" type="password" id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" required="required" autocomplete="new-password" />
+                            <label for="fos_user_registration_form_plainPassword_first" class="required focus-input100" data-placeholder="Введите пароль"></label>
+                        </div>
+
+                        <div class="wrap-input100">
+                            <input class="input100" type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required" autocomplete="new-password"/>
+                            <span for="fos_user_registration_form_plainPassword_second" type="text" for="username" class="required focus-input100" data-placeholder="Повторите ввод пароля"></span>
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button type="submit" class="login100-form-btn" value="{{ 'registration.submit'|trans }}">
+                                    Зарегистрироваться
+                                </button>
+                            </div>
+
+                    </div>
+                    <div class="text-center p-t-115">
+						<span class="txt1">
+							Хотите перейти на домащнюю страницу?
+						</span>
+                        <br>
+                        <a class="txt2" href="/">
+                            Перейти
+                        </a>
+                        <br>
+                        <a class="txt2" href="/login">
+                            Вернуться к авторизации!
+                        </a>
+                    </div>
+
+                </div>
+                {{ form_row(form._token) }}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}
+
+

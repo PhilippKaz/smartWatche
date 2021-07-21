@@ -1,0 +1,16 @@
+{# Шаблон данных #}
+{% if sq_data is defined  %}
+    <ul>
+    {% for data in sq_data  %}
+        <li>
+            {% if getCat is defined  %}
+            <a href="/category/{{ data.id}}">
+                {%  else  %}
+                <a href="/genre/{{ data.id}}">
+                    {% endif %}
+                    <p>{{ data.title|capitalize}}</p>
+                </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
